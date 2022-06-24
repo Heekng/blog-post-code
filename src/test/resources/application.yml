@@ -1,0 +1,9 @@
+spring:
+  jpa:
+    properties:
+      hibernate.default_batch_fetch_size: 1000
+
+logging:
+  level:
+    org.hibernate.SQL: debug # sql이 모두 보이게 설정, logger을 통해서 출력
+#    org.hibernate.type: trace # 로그에 파라미터를 찍어준다.
