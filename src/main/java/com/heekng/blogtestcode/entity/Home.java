@@ -25,9 +25,12 @@ public class Home {
     private List<Person> persons = new ArrayList<>();
 
     @Builder
-    public Home(String name, List<Dog> dogs, List<Person> persons) {
+    public Home(String name) {
         this.name = name;
-        this.dogs = dogs;
-        this.persons = persons;
+    }
+
+    public void addPerson(Person person) {
+        person.setHome(this);
+        this.persons.add(person);
     }
 }

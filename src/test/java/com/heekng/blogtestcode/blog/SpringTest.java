@@ -82,4 +82,21 @@ public class SpringTest {
         assertThat(homes.get(0).getDogs().size()).isEqualTo(2);
         assertThat(homes.get(0).getDogs().get(0).getName()).isEqualTo(dog1.getName());
     }
+
+    @Test
+    void cascadePersistTest() throws Exception {
+        //given
+        Home home = Home.builder()
+                .name("homeName")
+                .build();
+        Person person = Person.builder()
+                .name("person")
+                .build();
+        home.addPerson(person);
+        em.persist(home);
+        //when
+        Person findPerson = em.find(Person.class, person.getId());
+        //then
+        assertThat(findPerson.getHome().getId()).isEqualTo(home.getId());
+    }
 }
